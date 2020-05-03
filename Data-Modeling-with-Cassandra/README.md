@@ -1,33 +1,96 @@
 # Data Modeling with Cassandra
 
 ## Summary
+1. Processed the files from `event_data` to create a single csv file, `event_datafile_new.csv` that will be used for Apache Casssandra tables
+1. Querying data through Apache Cassandra
+    - Created Cassandra Cluster and Keyspace
+    - Created a new table for each specific query
+    - Load data into each table from `event_datafile_new.csv`
+    - Utilized Primary Key(includes Partition Key and Clustering columns) to query
 
 ## ETL Pipeline Processing
-- Created `event_data_new.csv` file
-- Used the appropriate datatype within the CREATE statement
+- Created `event_datafile_new.csv` file
+The image below is a screenshot of what the denormalized data appear like in `event_datafile_new.csv`
+
+![](image_event_datafile_new.jpg)
 
 ## Data Modeling
 - Created the Apache Cassandra tables for three queries
-- The CREATE TABLE statement includes the appropriate table
-- Followed the one table per query rule of Apache Cassandra
-- Not replicating the same table for all three queries, which defies that rule
-- Have three distinct tables with unique tables names and used appropriate CREATE table statements
-- The SELECT statement does NOT use ALLOW FILTERING to generate the results
-
-- In query 3, SELECT statement selected only the name of the user, even though the data in the table is partitioned with a PARTITION KEY and CLUSTERING COLUMN for this specific query
-
+- The CREATE TABLE statement includes the appropriate datatype and unique names
 - Table names reflect the query and the result it will generate
 - Table names include alphanumeric characters and underscores, and table names must start with a letter
-
-- The sequence in which columns appear reflect how the data is partitioned and the order of the data within the partitions
-
-- Apache Cassandra is a partition row store, which means the partition key determines which node a particular row is stored on
-- With the Primary key (which includes the Partition Key and any clustering columns), the partitions are distributed across the nodes of the cluster
-- It determines how data are chunked for write purposes. Any clustering column(s) would determine the order in which the data is sorted within the partition
+- Created one table per query, following the rules of Apache Cassandra
+- The SELECT statement does NOT use ALLOW FILTERING to generate the results
+- Implemented PRIMARY KEY with a COMPOSITE Partition for both the CREATE and INSERT statements
 
 ## PRIMARY KEYS
+- Apache Cassandra is a partition row store, which means the partition key determines which node a particular row is stored on
+- With the Primary key (which includes the Partition Key and any clustering columns), the partitions are distributed across the nodes of the cluster
 - The combination of the PARTITION KEY and CLUSTERING COLUMNS are used to uniquely identify each row
+- The sequence in which columns appear reflect how the data is partitioned and the order of the data within the partitions
+- Any clustering column(s) would determine the order in which the data is sorted within the partition
 
-- Implemented the PRIMARY KEY with a COMPOSITE Partition for both the CREATE and INSERT statements
+### Query 1
+#### Find the artist, song title and song's length in the music app history that was heard during sessionId = 338, and itemInSession = 4
+**Create Table**
+```
+CREATE TABLE IF NOT EXISTS artists_songs_info
+(sessionId int, itemInSession int, artist varchar, song varchar, length decimal, 
+ PRIMARY KEY (sessionId, itemInSession))
+```
+- Each row is uniquely identified with the combination of userId, sessionId and clustering column itemInSession
+**Query 1**
+```
+SELECT artist, song, length
+FROM artists_songs_info
+WHERE sessionId = 338 and itemInSession = 4
+```
 
-- In query 1, each row is uniquely identified with the combination of userId, sessionId and clustering column itemInSession
+|   | artist    | song                            | length   |
+|---|-----------|---------------------------------|----------|
+| 0 | Faithless | Music Matters (Mark Knight Dub) | 495.3073 |
+
+### Query 2
+Find the name of artist, song (sorted by itemInSession) and user (first and last name) for userid = 10, sessionid = 182
+**Create Table**
+```
+CREATE TABLE IF NOT EXISTS artists_songs_users_info
+(userId int, sessionId int, itemInSession int, artist varchar, 
+ song varchar, firstName varchar, lastName varchar,
+ PRIMARY KEY (userId, sessionId, itemInSession))
+```
+**Query 2**
+```
+SELECT artist, song, firstName, lastName
+FROM artists_songs_users_info
+WHERE userId = 10 AND sessionId = 182
+```
+
+|   | artist            | song                                              | firstname | lastname |
+|---|-------------------|---------------------------------------------------|-----------|----------|
+| 0 | Down To The Bone  | Keep On Keepin' On                                | Sylvie    | Cruz     |
+| 1 | Three Drives      | Greece 2000                                       | Sylvie    | Cruz     |
+| 2 | Sebastien Tellier | Kilometer                                         | Sylvie    | Cruz     |
+| 3 | Lonnie Gordon     | Catch You Baby (Steve Pitron & Max Sanna Radio... | Sylvie    | Cruz     |
+
+### Query 3 - Find every user name (first and last) in the data who listened to the song 'All Hands Against His Own'
+**Create Table**
+```
+CREATE TABLE IF NOT EXISTS users_songs_table
+(song varchar, userId int, firstName varchar, lastName varchar, 
+ PRIMARY KEY (song, userId))
+```
+- SELECT statement selected only the name of the user, even though the data in the table is partitioned with a PARTITION KEY and CLUSTERING COLUMN for this specific query
+**Query 3**
+```
+SELECT firstName, lastName
+FROM users_songs_table
+WHERE song = 'All Hands Against His Own'
+```
+
+|   | firstname  | lastname |
+|---|------------|----------|
+| 0 | Jacqueline | Lynch    |
+| 1 | Tegan      | Levine   |
+| 2 | Sara       | Johnson  |
+
