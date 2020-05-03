@@ -9,6 +9,8 @@ The purpose of this database is to understand what, where and how each user is l
 ## Database schema design
 We have 1 fact table (songplays), and 4 dimension tables (users, songs, artists, time).
 
+![](Song_ERD.png)
+
 ### Fact Table
 - songplay: Stores information of each song played in the logs data
   - Aggregates the crucial information of what and when the user is listening
