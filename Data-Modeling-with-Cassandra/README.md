@@ -29,7 +29,7 @@
 - The sequence in which columns appear reflect how the data is partitioned and the order of the data within the partitions
 - Any clustering column(s) would determine the order in which the data is sorted within the partition
 
-### Query 1
+### Query 1 - artists_songs_info
 Find the artist, song title and song's length in the music app history that was heard during sessionId = 338, and itemInSession = 4
 
 **Create Table 1 - artists_songs_info**
@@ -58,7 +58,7 @@ WHERE sessionId = 338 AND itemInSession = 4
 |---|-----------|---------------------------------|----------|
 | 0 | Faithless | Music Matters (Mark Knight Dub) | 495.3073 |
 
-### Query 2
+### Query 2 - artists_songs_users_info
 Find the name of artist, song (sorted by itemInSession) and user (first and last name) for userid = 10, sessionid = 182
 
 **Create Table 2 - artists_songs_users_info**
@@ -72,8 +72,8 @@ CREATE TABLE IF NOT EXISTS artists_songs_users_info (
 ```SQL
 INSERT INTO artists_songs_users_info (
     userId, sessionId, itemInSession, 
-    artist, song, firstName, lastName
-    ) VALUES (%s, %s, %s, %s, %s, %s, %s)
+    artist, song, firstName, lastName) 
+    VALUES (%s, %s, %s, %s, %s, %s, %s)
 ```
 **Query 2**
 ```SQL
@@ -89,7 +89,7 @@ WHERE userId = 10 AND sessionId = 182
 | 2 | Sebastien Tellier | Kilometer                                         | Sylvie    | Cruz     |
 | 3 | Lonnie Gordon     | Catch You Baby (Steve Pitron & Max Sanna Radio... | Sylvie    | Cruz     |
 
-### Query 3
+### Query 3 - users_songs_table
 Find every user name (first and last) in the data who listened to the song 'All Hands Against His Own'
 
 **Create Table 3 - users_songs_table**
@@ -101,8 +101,8 @@ CREATE TABLE IF NOT EXISTS users_songs_table (
 ```
 **Insert into Table 3**
 ```SQL
-INSERT INTO users_songs_table 
-    (song, userId, firstName, lastName)
+INSERT INTO users_songs_table (
+    song, userId, firstName, lastName)
     VALUES (%s, %s, %s, %s)
 ```
 - SELECT statement selected only the name of the user, even though the data in the table is partitioned with a PARTITION KEY and CLUSTERING COLUMN for this specific query
