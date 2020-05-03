@@ -1,16 +1,16 @@
 # Data Modeling with Cassandra
 
 ## Summary
-1. Processed the files from `event_data` to create a single csv file, `event_datafile_new.csv` that will be used for Apache Casssandra tables
+1. Processed the csv files from `event_data` to create a single csv file that will be used for Apache Casssandra tables
 1. Querying data through Apache Cassandra
     - Created Cassandra Cluster and Keyspace
     - Created a new table for each specific query
-    - Load data into each table from `event_datafile_new.csv`
-    - Utilized Primary Key(includes Partition Key and Clustering columns) to query
+    - Load data into each table from the aggregated file, `event_datafile_new.csv`
+    - Utilized Primary Key (includes Partition Key and Clustering columns) to query
 
 ## ETL Pipeline Processing
-- Created `event_datafile_new.csv` file
-The image below is a screenshot of what the denormalized data appear like in `event_datafile_new.csv`
+- Combine all csv files from `event_data` into one single csv file `event_datafile_new.csv`
+- The image below is a screenshot of what the denormalized data appear like
 
 ![](image_event_datafile_new.jpg)
 
@@ -31,7 +31,8 @@ The image below is a screenshot of what the denormalized data appear like in `ev
 - Any clustering column(s) would determine the order in which the data is sorted within the partition
 
 ### Query 1
-#### Find the artist, song title and song's length in the music app history that was heard during sessionId = 338, and itemInSession = 4
+Find the artist, song title and song's length in the music app history that was heard during sessionId = 338, and itemInSession = 4
+
 **Create Table**
 ```
 CREATE TABLE IF NOT EXISTS artists_songs_info
@@ -39,8 +40,9 @@ CREATE TABLE IF NOT EXISTS artists_songs_info
  PRIMARY KEY (sessionId, itemInSession))
 ```
 - Each row is uniquely identified with the combination of userId, sessionId and clustering column itemInSession
+
 **Query 1**
-```
+```SQL
 SELECT artist, song, length
 FROM artists_songs_info
 WHERE sessionId = 338 and itemInSession = 4
@@ -52,15 +54,16 @@ WHERE sessionId = 338 and itemInSession = 4
 
 ### Query 2
 Find the name of artist, song (sorted by itemInSession) and user (first and last name) for userid = 10, sessionid = 182
+
 **Create Table**
-```
+```MySQL
 CREATE TABLE IF NOT EXISTS artists_songs_users_info
 (userId int, sessionId int, itemInSession int, artist varchar, 
  song varchar, firstName varchar, lastName varchar,
  PRIMARY KEY (userId, sessionId, itemInSession))
 ```
 **Query 2**
-```
+```Cassandra
 SELECT artist, song, firstName, lastName
 FROM artists_songs_users_info
 WHERE userId = 10 AND sessionId = 182
@@ -73,7 +76,9 @@ WHERE userId = 10 AND sessionId = 182
 | 2 | Sebastien Tellier | Kilometer                                         | Sylvie    | Cruz     |
 | 3 | Lonnie Gordon     | Catch You Baby (Steve Pitron & Max Sanna Radio... | Sylvie    | Cruz     |
 
-### Query 3 - Find every user name (first and last) in the data who listened to the song 'All Hands Against His Own'
+### Query 3
+Find every user name (first and last) in the data who listened to the song 'All Hands Against His Own'
+
 **Create Table**
 ```
 CREATE TABLE IF NOT EXISTS users_songs_table
@@ -81,6 +86,7 @@ CREATE TABLE IF NOT EXISTS users_songs_table
  PRIMARY KEY (song, userId))
 ```
 - SELECT statement selected only the name of the user, even though the data in the table is partitioned with a PARTITION KEY and CLUSTERING COLUMN for this specific query
+
 **Query 3**
 ```
 SELECT firstName, lastName
