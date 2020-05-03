@@ -32,7 +32,7 @@
 ### Query 1
 Find the artist, song title and song's length in the music app history that was heard during sessionId = 338, and itemInSession = 4
 
-**Create Table 1**
+**Create Table 1 - artists_songs_info**
 ```SQL
 CREATE TABLE IF NOT EXISTS artists_songs_info (
     sessionId INT, itemInSession INT, artist VARCHAR, 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS artists_songs_info (
     PRIMARY KEY (sessionId, itemInSession))
 ```
 **Insert into Table 1**
-```
+```SQL
 INSERT INTO artists_songs_info (
     sessionId, itemInSession, artist, song, length)
     VALUES (%s, %s, %s, %s, %s)
@@ -53,7 +53,7 @@ SELECT artist, song, length
 FROM artists_songs_info
 WHERE sessionId = 338 AND itemInSession = 4
 ```
-**Result**
+**Result 1**
 |   | artist    | song                            | length   |
 |---|-----------|---------------------------------|----------|
 | 0 | Faithless | Music Matters (Mark Knight Dub) | 495.3073 |
@@ -61,7 +61,7 @@ WHERE sessionId = 338 AND itemInSession = 4
 ### Query 2
 Find the name of artist, song (sorted by itemInSession) and user (first and last name) for userid = 10, sessionid = 182
 
-**Create Table**
+**Create Table 2 - artists_songs_users_info**
 ```MySQL
 CREATE TABLE IF NOT EXISTS artists_songs_users_info (
     userId INT, sessionId INT, itemInSession INT, artist VARCHAR, 
@@ -69,11 +69,11 @@ CREATE TABLE IF NOT EXISTS artists_songs_users_info (
     PRIMARY KEY (userId, sessionId, itemInSession))
 ```
 **Insert into Table 2**
-```
+```SQL
 INSERT INTO artists_songs_users_info (
     userId, sessionId, itemInSession, 
-    artist, song, firstName, lastName)
-    VALUES (%s, %s, %s, %s, %s, %s, %s)
+    artist, song, firstName, lastName
+    ) VALUES (%s, %s, %s, %s, %s, %s, %s)
 ```
 **Query 2**
 ```SQL
@@ -81,7 +81,7 @@ SELECT artist, song, firstName, lastName
 FROM artists_songs_users_info
 WHERE userId = 10 AND sessionId = 182
 ```
-**Result**
+**Result 2**
 |   | artist            | song                                              | firstname | lastname |
 |---|-------------------|---------------------------------------------------|-----------|----------|
 | 0 | Down To The Bone  | Keep On Keepin' On                                | Sylvie    | Cruz     |
@@ -92,7 +92,7 @@ WHERE userId = 10 AND sessionId = 182
 ### Query 3
 Find every user name (first and last) in the data who listened to the song 'All Hands Against His Own'
 
-**Create Table**
+**Create Table 3 - users_songs_table**
 ```MySQL
 CREATE TABLE IF NOT EXISTS users_songs_table (
     song VARCHAR, userId INT, 
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS users_songs_table (
     PRIMARY KEY (song, userId))
 ```
 **Insert into Table 3**
-```
+```SQL
 INSERT INTO users_songs_table 
     (song, userId, firstName, lastName)
     VALUES (%s, %s, %s, %s)
@@ -113,7 +113,7 @@ SELECT firstName, lastName
 FROM users_songs_table
 WHERE song = 'All Hands Against His Own'
 ```
-**Result**
+**Result 3**
 |   | firstname  | lastname |
 |---|------------|----------|
 | 0 | Jacqueline | Lynch    |
