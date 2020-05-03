@@ -39,6 +39,12 @@ CREATE TABLE IF NOT EXISTS artists_songs_info (
     song VARCHAR, length DECIMAL, 
     PRIMARY KEY (sessionId, itemInSession))
 ```
+**Insert into Table 1**
+```
+INSERT INTO artists_songs_info (
+    sessionId, itemInSession, artist, song, length)
+    VALUES (%s, %s, %s, %s, %s)
+```
 - Each row is uniquely identified with the combination of userId, sessionId and clustering column itemInSession
 
 **Query 1**
@@ -47,7 +53,7 @@ SELECT artist, song, length
 FROM artists_songs_info
 WHERE sessionId = 338 AND itemInSession = 4
 ```
-
+**Result**
 |   | artist    | song                            | length   |
 |---|-----------|---------------------------------|----------|
 | 0 | Faithless | Music Matters (Mark Knight Dub) | 495.3073 |
@@ -62,13 +68,20 @@ CREATE TABLE IF NOT EXISTS artists_songs_users_info (
     song VARCHAR, firstName VARCHAR, lastName VARCHAR,
     PRIMARY KEY (userId, sessionId, itemInSession))
 ```
+**Insert into Table 2**
+```
+INSERT INTO artists_songs_users_info (
+    userId, sessionId, itemInSession, 
+    artist, song, firstName, lastName)
+    VALUES (%s, %s, %s, %s, %s, %s, %s)
+```
 **Query 2**
 ```SQL
 SELECT artist, song, firstName, lastName
 FROM artists_songs_users_info
 WHERE userId = 10 AND sessionId = 182
 ```
-
+**Result**
 |   | artist            | song                                              | firstname | lastname |
 |---|-------------------|---------------------------------------------------|-----------|----------|
 | 0 | Down To The Bone  | Keep On Keepin' On                                | Sylvie    | Cruz     |
@@ -86,6 +99,12 @@ CREATE TABLE IF NOT EXISTS users_songs_table (
     firstName VARCHAR, lastName VARCHAR, 
     PRIMARY KEY (song, userId))
 ```
+**Insert into Table 3**
+```
+INSERT INTO users_songs_table 
+    (song, userId, firstName, lastName)
+    VALUES (%s, %s, %s, %s)
+```
 - SELECT statement selected only the name of the user, even though the data in the table is partitioned with a PARTITION KEY and CLUSTERING COLUMN for this specific query
 
 **Query 3**
@@ -94,7 +113,7 @@ SELECT firstName, lastName
 FROM users_songs_table
 WHERE song = 'All Hands Against His Own'
 ```
-
+**Result**
 |   | firstname  | lastname |
 |---|------------|----------|
 | 0 | Jacqueline | Lynch    |
