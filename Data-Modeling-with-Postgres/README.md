@@ -51,7 +51,7 @@ We have 4 dimension tables (users, songs, artists, time) and 1 fact table (songp
 
 `SELECT user_id, count(*) FROM songplays where level = 'paid' group by user_id order by count desc limit 5;`
 
-| **user_id | **count** |
+| user_id | count |
 |---------|-------|
 | 49      | 689   |
 | 80      | 665   |
