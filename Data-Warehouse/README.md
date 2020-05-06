@@ -1,7 +1,7 @@
 # Schema for Song Play Analysis
 
 ## Summary
-The purpose of this database is to understand what, where and how each user is listening to the songs in Sparkify. The analytial goals is to find out what is making the free tier users switch to paid tier and why paid users are downgrading to free tier through their listening habits.
+The purpose of this Redshift database is to understand what, where and how each user is listening to the songs in Sparkify. The analytial goals is to find out what is making the free tier users switch to paid tier and why paid users are downgrading to free tier through their listening habits.
 
 ## How to run the Python scripts
 1. `create_tables.py` will create staging, fact, and dimension tables, dropping any tables with conflicting names beforehand.
