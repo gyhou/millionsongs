@@ -1,6 +1,5 @@
 # Data Pipeline with Airflow
-build dynamic and reusable ETL pipelines and how to make sure the data quality meets specifications
-
+- Built a dynamic and reusable ETL pipeline through data quality checks
 - All the tasks have a dependency and DAG begins with a start_execution task and ends with a end_execution task.
 
 ## Dag configuration
