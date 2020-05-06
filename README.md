@@ -1,6 +1,8 @@
 # Data Engineering with Millionsongs subset data
 **Original Source** - http://millionsongdataset.com/
+
 **Song Data Source** - s3://udacity-dend/song_data
+
 **Meta Log Data Source** - s3://udacity-dend/log_data
 
 ## Data Modeling with PostgreSQL
