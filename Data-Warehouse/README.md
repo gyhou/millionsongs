@@ -1,4 +1,4 @@
-# Schema for Song Play Analysis
+# Data Warehouse
 
 ## Summary
 The purpose of this Redshift database is to understand what, where and how each user is listening to the songs in Sparkify. The analytial goals is to find out what is making the free tier users switch to paid tier and why paid users are downgrading to free tier through their listening habits.
@@ -23,7 +23,9 @@ The purpose of this Redshift database is to understand what, where and how each 
 1. `create_tables.py` will create staging, fact, and dimension tables, dropping any tables with conflicting names beforehand.
 1. `etl.py` loads data from S3 to staging tables, and transforms data into a set of dimensional tables.
 
-## Database schema design
+## Database schema design for Song Play Analysis
+![](https://github.com/gyhou/millionsongs/blob/v1.0/Song_ERD.png?raw=true)
+
 - Create a star schema optimized for queries on song play analysis
 - 2 staging tables (log_data, song_data), 1 fact table (songplays), and 4 dimension tables (users, songs, artists, time).
 
@@ -80,9 +82,16 @@ Since Redshift does not enforce uniqueness for any column, we have to implement 
 - etl.py: extracts data from S3, stages them in Redshift, and transforms data into a set of dimensional tables
 - sql_queries.py: contains all sql queries, and is imported into the last two files above
 
-## Example queries and results for song play analysis.
+## Example queries and results for song play analysis
 
-`SELECT user_id, count(*) FROM songplays where level = 'paid' group by user_id order by count desc limit 5;`
+```SQL
+SELECT user_id, count(*) 
+FROM songplays 
+WHERE level = 'paid' 
+GROUP BY user_id 
+ORDER BY count DESC 
+LIMIT 5;
+```
 
 | **user_id | **count** |
 |---------|-------|
