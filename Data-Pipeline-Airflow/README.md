@@ -42,9 +42,9 @@
   - Connected to the Redshift database via an Airflow hook
 
 ## Loading dimensions and fact table
-- Dimensions are loaded with on the LoadDimension operator
+- Dimensions are loaded with on the `LoadDimension` operator
  - Separated functional operator for dimensions (`LoadDimensionOperator`)
-- Facts are loaded with on the LoadFact operator
+- Facts are loaded with on the `LoadFact` operator
  - Separated functional operator for facts (`LoadFactOperator`)
 - Task uses params to generate the copy statement dynamically
   - Dynamically generated copy statements as opposed to static SQL statements
