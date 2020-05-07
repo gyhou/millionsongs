@@ -1,4 +1,8 @@
 # Data Engineering with Millionsongs subset data
+
+## Summary
+The purpose of this project is to understand what, where and how each user is listening to the songs in the meta data generated base on the **Million Song Dataset**. The analytial goals is to find out what is making the free tier users switch to paid tier and why paid users are downgrading to free tier through their listening habits.
+
 ## Project Datasets
 ### Song Dataset
 - Subset of the real data from [Million Song Dataset](http://millionsongdataset.com/)
@@ -41,4 +45,6 @@ We have 1 fact table (songplays), and 4 dimension tables (users, songs, artists,
 ## Data Lake (Spark, AWS Redshift, S3)
 - Performs ETL loading data from S3 using Spark to Redshift
 
-## Data Pipeline with Airflow
+## Data Pipeline with Airflow (Airflow, AWS Redshift, S3)
+- Using Apache Airflow to automate and monitor to data warehouse ETL pipelines
+- Build a dynamic, reusable, and allow easy backfills ETL pipeline through data quality checks
