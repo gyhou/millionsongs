@@ -23,7 +23,7 @@ The purpose of this database is to understand what, where and how each user is l
 
 1. `etl.py` reads and processes files from `data/song_data` and `data/log_data` and loads them into the 5 tables.
 
-## Database schema design
+## Database Schema Design for Song Play Analysis
 We have 4 dimension tables (users, songs, artists, time) and 1 fact table (songplays).
 
 - `users`: Stores the information of each unique users using the app
@@ -62,9 +62,16 @@ We have 4 dimension tables (users, songs, artists, time) and 1 fact table (songp
 - sql_queries.py: contains all sql queries, and is imported into the last three files above
 - test.ipynb: check the data inside the tables in the database to make sure the code is working properly
 
-## Example queries and results for song play analysis.
+## Example queries and results for song play analysis
 
-`SELECT user_id, count(*) FROM songplays where level = 'paid' group by user_id order by count desc limit 5;`
+```SQL
+SELECT user_id, count(*) 
+FROM songplays 
+WHERE level = 'paid' 
+GROUP BY user_id 
+ORDER BY count DESC 
+LIMIT 5;
+```
 
 | user_id | count |
 |---------|-------|
