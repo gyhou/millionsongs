@@ -26,20 +26,20 @@ The purpose of this database is to understand what, where and how each user is l
 ## Database schema design
 We have 4 dimension tables (users, songs, artists, time) and 1 fact table (songplays).
 
-- users: Stores the information of each unique users using the app
+- `users`: Stores the information of each unique users using the app
   - If users change their info, the users table will allow changes without error
   - user_id as `PRIMARY KEY`, each user_id is associated with only one user
-- songs: Stores the information of each unique songs in the music database
+- `songs`: Stores the information of each unique songs in the music database
   - song's information cannot be alterd once created as it should stay the same
   - song_id as `PRIMARY KEY`, each song_id is associated with only one song
-- artists: Stores the information of each unique artists in the music database
+- `artists`: Stores the information of each unique artists in the music database
   - If artist's info is changed, their location would be updated without error
   - artist_id as `PRIMARY KEY`, each artist_id is associated with only one artist
-- time: timestamps of records in songplays broken down into specific units
+- `time`: timestamps of records in songplays broken down into specific units
   - This allows us to better understand what period of the day/week/month/year do people listen to music
   - start_time as `PRIMARY KEY`, each record requires a start_time to initialize the date time record
   
-- songplay: Stores information of each song played in the logs data
+- `songplays`: Stores information of each song played in the logs data
   - Aggregates the crucial information of what and when the user is listening
   - songplay_id as `SERIAL PRIMARY KEY`, for each record the id will increment automatically as each record is unique
 
