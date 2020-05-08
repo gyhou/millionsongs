@@ -4,32 +4,7 @@
 - Built a dynamic and reusable ETL pipeline through data quality checks
 - All the tasks have a dependency and DAG begins with a start_execution task and ends with a end_execution task.
 
-## Airflow Connections to AWS
-![](https://raw.githubusercontent.com/gyhou/millionsongs/master/img/admin-connections.png)
-
-1. Use Airflow's UI to configure AWS credentials and connection to Redshift
-1. At the top **Admin** tab and select **Connections**
-1. Under **Connections**, select **Create**
-1. On the create connection page, enter the following values:
-    - **Conn Id**: Enter `aws_credentials`
-    - **Conn Type**: Enter `Amazon Web Services`
-    - **Login**: Enter your **Access key ID** from the IAM User credentials
-    - **Password**: Enter your **Secret access key** from the IAM User credentials
-    - Once you've entered these values, select **Save and Add Another**
-1. On the next create connection page, enter the following values:
-    - **Conn Id**: Enter `redshift`
-    - **Conn Type**: Enter `Postgres`
-    - **Host**: Enter the endpoint of your Redshift cluster, excluding the port at the end. You can find this by selecting your cluster in the **Clusters** page of the Amazon Redshift console. See where this is located in the screenshot below
-      - ***IMPORTANT***: Make sure to **NOT** include the port at the end of the Redshift endpoint string
-    - **Schema**: Enter the Redshift `Database Name` to connect to
-    - **Login**: Enter the Redshift `Master Username` to connect to
-    - **Password**: Enter the password you created when launching your Redshift cluster.
-    - **Port**: Enter `5439`
-    - Once you've entered these values, select **Save**
-
-**WARNING: Remember to DELETE your cluster each time you are finished working to avoid large, unexpected costs.**
-
-![](https://raw.githubusercontent.com/gyhou/millionsongs/master/img/cluster-details.png)
+[Setup Airflow connection to AWS](README.md#Airflow-Connections-to-AWS)
 
 ## Project Datasets
 ### Song Dataset
@@ -81,3 +56,30 @@
 - Data quality check is done with correct operator
 - Set up DAG to either fail or retries 3 times
 - Operator uses params to get the tests and the results, tests are not hard coded to the operator
+
+## Airflow-Connections-to-AWS
+![](https://raw.githubusercontent.com/gyhou/millionsongs/master/img/admin-connections.png)
+
+1. Use Airflow's UI to configure AWS credentials and connection to Redshift
+1. At the top **Admin** tab and select **Connections**
+1. Under **Connections**, select **Create**
+1. On the create connection page, enter the following values:
+    - **Conn Id**: Enter `aws_credentials`
+    - **Conn Type**: Enter `Amazon Web Services`
+    - **Login**: Enter your **Access key ID** from the IAM User credentials
+    - **Password**: Enter your **Secret access key** from the IAM User credentials
+    - Once you've entered these values, select **Save and Add Another**
+1. On the next create connection page, enter the following values:
+    - **Conn Id**: Enter `redshift`
+    - **Conn Type**: Enter `Postgres`
+    - **Host**: Enter the endpoint of your Redshift cluster, excluding the port at the end. You can find this by selecting your cluster in the **Clusters** page of the Amazon Redshift console. See where this is located in the screenshot below
+      - ***IMPORTANT***: Make sure to **NOT** include the port at the end of the Redshift endpoint string
+    - **Schema**: Enter the Redshift `Database Name` to connect to
+    - **Login**: Enter the Redshift `Master Username` to connect to
+    - **Password**: Enter the password you created when launching your Redshift cluster.
+    - **Port**: Enter `5439`
+    - Once you've entered these values, select **Save**
+
+**WARNING: Remember to DELETE your cluster each time you are finished working to avoid large, unexpected costs.**
+
+![](https://raw.githubusercontent.com/gyhou/millionsongs/master/img/cluster-details.png)
