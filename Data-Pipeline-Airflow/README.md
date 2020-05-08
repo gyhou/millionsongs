@@ -13,8 +13,8 @@
 1. On the create connection page, enter the following values:
     - **Conn Id**: Enter `aws_credentials`
     - **Conn Type**: Enter `Amazon Web Services`
-    - **Login**: Enter your Access key ID from the IAM User credentials you downloaded earlier
-    - **Password**: Enter your **Secret access key** from the IAM User credentials you downloaded earlier
+    - **Login**: Enter your **Access key ID** from the IAM User credentials
+    - **Password**: Enter your **Secret access key** from the IAM User credentials
     - Once you've entered these values, select **Save and Add Another**
 1. On the next create connection page, enter the following values:
     - **Conn Id**: Enter `redshift`
