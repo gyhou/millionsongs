@@ -48,3 +48,5 @@ We have 1 fact table (songplays), and 4 dimension tables (users, songs, artists,
 ## Data Pipeline with Airflow (Airflow, AWS Redshift, S3)
 - Using Apache Airflow to automate and monitor to data warehouse ETL pipelines
 - Build a dynamic, reusable, and allow easy backfills ETL pipeline through data quality checks
+
+![](https://github.com/gyhou/millionsongs/blob/master/Data-Pipeline-Airflow/songplay-dag.png?raw=true)
