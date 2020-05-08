@@ -24,7 +24,7 @@ The purpose of this database is to understand what, where and how each user is l
 1. `etl.py` reads and processes files from `data/song_data` and `data/log_data` and loads them into the 5 tables.
 
 ## Database Schema Design for Song Play Analysis
-![](https://github.com/gyhou/millionsongs/blob/v1.0/Song_ERD.png?raw=true)
+![](https://raw.githubusercontent.com/gyhou/millionsongs/master/img/Song_ERD.png)
 
 We have 4 dimension tables (users, songs, artists, time) and 1 fact table (songplays).
 
