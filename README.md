@@ -15,7 +15,7 @@ The purpose of this project is to understand what, where and how each user is li
 
 ## Database schema design
 We have 1 fact table (songplays), and 4 dimension tables (users, songs, artists, time).
-![](Song_ERD.png)
+![](img/Song_ERD.png)
 
 ### Fact Table
 - songplay: Stores information of each song played in the logs data
@@ -49,4 +49,4 @@ We have 1 fact table (songplays), and 4 dimension tables (users, songs, artists,
 - Using Apache Airflow to automate and monitor to data warehouse ETL pipelines
 - Build a dynamic, reusable, and allow easy backfills ETL pipeline through data quality checks
 
-![](https://github.com/gyhou/millionsongs/blob/master/Data-Pipeline-Airflow/songplay-dag.png?raw=true)
+![](img/songplay-dag.png)
