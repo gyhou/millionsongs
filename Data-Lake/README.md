@@ -25,7 +25,7 @@ The purpose of this database is to understand what, where and how each user is l
 ## Database schema design
 We have 1 fact table (songplays), and 4 dimension tables (users, songs, artists, time).
 
-![](Song_ERD.png)
+![](https://raw.githubusercontent.com/gyhou/millionsongs/master/img/Song_ERD.png)
 
 ### Fact Table
 - `songplays`: Stores information of each song played in the logs data
