@@ -24,7 +24,7 @@ The purpose of this Redshift database is to understand what, where and how each 
 1. `etl.py` loads data from S3 to staging tables, and transforms data into a set of dimensional tables.
 
 ## Database schema design for Song Play Analysis
-![](https://github.com/gyhou/millionsongs/blob/master/img/Song_ERD.png?raw=true)
+![](https://github.com/gyhou/millionsongs/img/Song_ERD.png?raw=true)
 
 - Create a star schema optimized for queries on song play analysis
 - 2 staging tables (log_data, song_data), 1 fact table (songplays), and 4 dimension tables (users, songs, artists, time).
