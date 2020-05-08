@@ -5,6 +5,8 @@
 - All the tasks have a dependency and DAG begins with a start_execution task and ends with a end_execution task.
 
 ## Airflow Connections to AWS
+![](https://raw.githubusercontent.com/gyhou/millionsongs/master/img/admin-connections.png)
+
 1. Use Airflow's UI to configure AWS credentials and connection to Redshift
 1. At the top **Admin** tab and select **Connections**
 1. Under **Connections**, select **Create**
@@ -27,6 +29,8 @@
 
 **WARNING: Remember to DELETE your cluster each time you are finished working to avoid large, unexpected costs.**
 
+![](https://raw.githubusercontent.com/gyhou/millionsongs/master/img/cluster-details.png)
+
 ## Project Datasets
 ### Song Dataset
 **S3 Song Data Source** - `s3://udacity-dend/song_data`
@@ -40,7 +44,7 @@
 - The dataset are partitioned by year and month
 
 ## Dag configuration
-![](songplay-dag.png)
+![](https://raw.githubusercontent.com/gyhou/millionsongs/master/img/songplay-dag.png)
 
 ### DAG contains default_args dict, with the following keys:
 - Owner
@@ -52,7 +56,7 @@
 - DAG can be scheduled
 
 ## Database schema design for Song Play Analysis
-![](https://github.com/gyhou/millionsongs/blob/v1.0/Song_ERD.png?raw=true)
+![](https://raw.githubusercontent.com/gyhou/millionsongs/master/img/Song_ERD.png)
 
 ## Staging the data
 - Stages data from S3 to Redshift
