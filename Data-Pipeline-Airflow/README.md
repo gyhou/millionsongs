@@ -4,6 +4,29 @@
 - Built a dynamic and reusable ETL pipeline through data quality checks
 - All the tasks have a dependency and DAG begins with a start_execution task and ends with a end_execution task.
 
+## Airflow Connections to AWS
+1. Use Airflow's UI to configure AWS credentials and connection to Redshift
+1. At the top **Admin** tab and select **Connections**
+1. Under **Connections**, select **Create**
+1. On the create connection page, enter the following values:
+    - **Conn Id**: Enter `aws_credentials`
+    - **Conn Type**: Enter `Amazon Web Services`
+    - **Login**: Enter your Access key ID from the IAM User credentials you downloaded earlier
+    - **Password**: Enter your **Secret access key** from the IAM User credentials you downloaded earlier
+    - Once you've entered these values, select **Save and Add Another**
+1. On the next create connection page, enter the following values:
+    - **Conn Id**: Enter `redshift`
+    - **Conn Type**: Enter `Postgres`
+    - **Host**: Enter the endpoint of your Redshift cluster, excluding the port at the end. You can find this by selecting your cluster in the **Clusters** page of the Amazon Redshift console. See where this is located in the screenshot below
+      - ***IMPORTANT***: Make sure to **NOT** include the port at the end of the Redshift endpoint string
+    - **Schema**: Enter the Redshift `Database Name` to connect to
+    - **Login**: Enter the Redshift `Master Username` to connect to
+    - **Password**: Enter the password you created when launching your Redshift cluster.
+    - **Port**: Enter `5439`
+    - Once you've entered these values, select **Save**
+
+**WARNING: Remember to DELETE your cluster each time you are finished working to avoid large, unexpected costs.**
+
 ## Project Datasets
 ### Song Dataset
 **S3 Song Data Source** - `s3://udacity-dend/song_data`
