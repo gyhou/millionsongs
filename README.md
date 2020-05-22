@@ -1,7 +1,7 @@
 # Data Engineering with Millionsongs Dataset
 
 ## Summary
-The purpose of this project is to understand what, where and how each user is listening to the songs in the meta data generated base on the Million Song Dataset. The analytial goals is to find out what is making the free tier users switch to paid tier and why paid users are downgrading to free tier through their listening habits.
+The purpose of this project is to understand what, where, and how each user is listening to the songs in the metadata generated based on the MillionSong Dataset. The analytical goal is to find out what is making the free tier users switch to the paid tier and why paid users are downgrading to the free tier through their listening habits.
 
 ## Project Datasets
 ### Song Dataset
