@@ -1,7 +1,7 @@
 # Data Pipeline with Airflow
 
 ## Summary
-- Built a dynamic and reusable ETL pipeline through data quality checks
+- Built a dynamic and automated ETL pipeline with data quality checks
 - All the tasks have a dependency and DAG begins with a start_execution task and ends with a end_execution task.
 
 [Setup Airflow connection to AWS](README.md#Airflow-Connections-to-AWS)
