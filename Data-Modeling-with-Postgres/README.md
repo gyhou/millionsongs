@@ -1,4 +1,4 @@
-# Schema for Song Play Analysis
+# Data Modeling with Postgres
 
 ## Summary
 The purpose of this database is to understand what, where and how each user is listening to the songs in Sparkify. The analytial goals is to find out what is making the free tier users switch to paid tier and why paid users are downgrading to free tier through their listening habits.
