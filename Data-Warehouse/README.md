@@ -4,7 +4,7 @@
 The purpose of this Redshift database is to understand what, where and how each user is listening to the songs in Sparkify. The analytial goals is to find out what is making the free tier users switch to paid tier and why paid users are downgrading to free tier through their listening habits.
 
 1. Build an ETL pipeline that extracts data from S3
-1. Stages them in Redshift
+1. Stages song and log data in Redshift
 1. Transforms data into a set of dimensional tables and fact table for analytics team to continue finding insights in what songs their users are listening to
 
 ## Project Datasets
