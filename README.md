@@ -1,7 +1,7 @@
-# Data Engineering with Millionsongs subset data
+# Data Engineering with Millionsongs Dataset
 
 ## Summary
-The purpose of this project is to understand what, where and how each user is listening to the songs in the meta data generated base on the **Million Song Dataset**. The analytial goals is to find out what is making the free tier users switch to paid tier and why paid users are downgrading to free tier through their listening habits.
+The purpose of this project is to understand what, where, and how each user is listening to the songs in the metadata generated based on the MillionSong Dataset. The analytical goal is to find out what is making the free tier users switch to the paid tier and why paid users are downgrading to the free tier through their listening habits.
 
 ## Project Datasets
 ### Song Dataset
@@ -15,7 +15,7 @@ The purpose of this project is to understand what, where and how each user is li
 
 ## Database schema design
 We have 1 fact table (songplays), and 4 dimension tables (users, songs, artists, time).
-![](Song_ERD.png)
+![](img/Song_ERD.png)
 
 ### Fact Table
 - songplay: Stores information of each song played in the logs data
@@ -48,3 +48,5 @@ We have 1 fact table (songplays), and 4 dimension tables (users, songs, artists,
 ## Data Pipeline with Airflow (Airflow, AWS Redshift, S3)
 - Using Apache Airflow to automate and monitor to data warehouse ETL pipelines
 - Build a dynamic, reusable, and allow easy backfills ETL pipeline through data quality checks
+
+![](img/songplay-dag.png)
