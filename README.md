@@ -43,7 +43,7 @@ We have 1 fact table (songplays), and 4 dimension tables (users, songs, artists,
 - Performs ETL loading data from S3 to Redshift
 
 ## Data Lake (Spark, AWS Redshift, S3)
-- Performs ETL loading data from S3 using Spark to Redshift
+- Performs ELT loading data from S3 using Spark to Redshift
 
 ## Data Pipeline with Airflow (Airflow, AWS Redshift, S3)
 - Using Apache Airflow to automate and monitor to data warehouse ETL pipelines
