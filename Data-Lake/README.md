@@ -46,7 +46,7 @@ We have 1 fact table (songplays), and 4 dimension tables (users, songs, artists,
   - start_time as `PRIMARY KEY`, dropped any duplicates from the table as each start_time will have the same date time info
   - Partitioned by `year` and then `month`
 
-## ETL pipeline
+## ELT pipeline
 - Extract data from input location (S3 bucket)
 - Transform song and log data
 - Feature engineer additional columns
